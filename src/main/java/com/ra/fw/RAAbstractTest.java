@@ -1,8 +1,6 @@
 package com.ra.fw;
 
-import com.ra.components.DP;
 import com.ra.components.SA;
-import com.ra.feign.clients.SAFeignBuilder;
 import com.ra.enums.Component;
 import io.cucumber.java.Scenario;
 import org.apache.logging.log4j.LogManager;
@@ -19,7 +17,6 @@ import java.util.*;
  *
  */
 public abstract class RAAbstractTest {
-    protected static DP dp;
     protected static SA sa;
     protected static Logger logger;
     protected static Properties properties;
@@ -48,9 +45,6 @@ public abstract class RAAbstractTest {
 
     private static synchronized void initializeComponent(Component comp) {
         switch (comp) {
-            case DEVICE_PORTAL:
-                dp = initializeOnce(dp, DP.class);
-                break;
             case SAMPLE_APP:
                 sa = initializeOnce(sa, SA.class);
                 break;
@@ -80,14 +74,6 @@ public abstract class RAAbstractTest {
             }
             //TODO - Update as per DA needs
             checkSensitiveEmpty(System.getProperty("test.env"));
-            SAFeignBuilder.timeoutSecs = Long.parseLong(
-                    properties.getProperty("feign.timeout.secs", "300"));
-            SAFeignBuilder.retry = Boolean.parseBoolean(
-                    properties.getProperty("feign.retry", "false"));
-            SAFeignBuilder.sslTrustAll = Boolean.parseBoolean(
-                    properties.getProperty("feign.ssl.trust.all", "false"));
-            SAFeignBuilder.logLevel = feign.Logger.Level.valueOf(
-                    properties.getProperty("feign.log.level", "full").toUpperCase());
             if (Boolean.parseBoolean(properties.getProperty("jenkins.retry.logic.enabled")))
                 System.out.println("RETRY LOGIC IS ENABLED");
             areClientsInitialized = true;

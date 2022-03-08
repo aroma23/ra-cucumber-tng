@@ -1,7 +1,6 @@
 package com.ra;
 
 import com.ra.fw.Util;
-import feign.Response;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
@@ -22,10 +21,9 @@ import java.util.function.Supplier;
 @Data
 public class CommonSteps {
     private static final Logger logger = LogManager.getLogger(CommonSteps.class);
-    private Response response;
     private String jsonResponseString;
     private int responseStatusCode;
-    private Supplier<Response> health;
+//    private Supplier<Response> health;
     private Supplier<String> jrs; //set jsonResponseString from called class
     private Supplier<Integer> jsc; //set response status code from called class
     private Scenario scenario;
@@ -39,19 +37,19 @@ public class CommonSteps {
 
     @When("Get health check API called")
     public void getHealthCheckAPICalled() {
-        response = health.get();
+//        response = health.get();
     }
 
     @Then("Get health check API should respond with expectedStatusCode: {int}")
     public void getHealthCheckAPIShouldRespondWithExpectedStatusCode(int expectedStatusCode) {
-        logger.debug("Get health check response code: {}", response.status());
-        Assert.assertEquals("Get health check status doesn't match with expected", expectedStatusCode,
-                response.status());
+//        logger.debug("Get health check response code: {}", response.status());
+//        Assert.assertEquals("Get health check status doesn't match with expected", expectedStatusCode,
+//                response.status());
     }
 
     @And("Get health check API respond have {string} status")
     public void getHealthCheckAPIRespondHaveUPStatus(String state) throws JSONException {
-        jsonResponseString = response.body().toString();
+//        jsonResponseString = response.body().toString();
         logger.trace("Get health check response: {}", jsonResponseString);
         Assert.assertEquals("Get health check response doesn't match with expected",
                 new JSONObject(jsonResponseString).getString("status"), state);

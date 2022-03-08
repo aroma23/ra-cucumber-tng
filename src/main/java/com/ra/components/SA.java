@@ -1,8 +1,8 @@
 package com.ra.components;
 
 import com.ra.fw.BaseComponent;
-import com.ra.fw.GenWebSec;
 import com.ra.ra.clients.SAClient;
+import com.ra.ra.clients.WebSecClient;
 import org.json.JSONException;
 
 import java.sql.Connection;
@@ -35,7 +35,7 @@ public class SA extends BaseComponent {
         return genTokenThreadSafe(() -> {
             if (staticToken.equals("")) {
                 try {
-                    staticToken = GenWebSec.getATFromFeign(properties.getProperty("web.sec.url"),
+                    staticToken = WebSecClient.getAccessToken(properties.getProperty("web.sec.url"),
                             properties.getProperty("sa.client.id"),
                             properties.getProperty("sa.client.secret"),
                             properties.getProperty("sa.grand.type"),

@@ -2,11 +2,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.snp.da</groupId>
+	<groupId>com.ra</groupId>
 	<artifactId>ra-cucumber-tng</artifactId>
 	<version>2.0</version>
 	<packaging>jar</packaging>
-	<name>Cucumber-Java-TestNG</name>
+	<name>Cucumber-Java-RestAssured-TestNG</name>
 
 	<properties>
 		<maven.test.failure.ignore>true</maven.test.failure.ignore>
@@ -15,12 +15,9 @@
 		<cucumber.version>7.2.3</cucumber.version>
 		<maven.cucumber.report.version>5.6.2</maven.cucumber.report.version>
 		<aws.sdk.version>1.12.153</aws.sdk.version>
-		<feign.version>11.0</feign.version>
 		<java.version>11</java.version>
 		<jsch.version>0.1.55</jsch.version>
 		<everit.json.schema.version>1.14.0</everit.json.schema.version>
-		<feign.java11.version>10.12</feign.java11.version>
-		<feign.form.version>3.8.0</feign.form.version>
 		<jackson.version>2.13.0</jackson.version>
 		<mongodb.driver.version>4.4.0</mongodb.driver.version>
 		<log4j.slf4j.version>2.17.1</log4j.slf4j.version>
@@ -65,27 +62,6 @@
 			<groupId>com.github.erosb</groupId>
 			<artifactId>everit-json-schema</artifactId>
 			<version>${everit.json.schema.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>io.github.openfeign</groupId>
-			<artifactId>feign-core</artifactId>
-			<version>${feign.version}</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/io.github.openfeign/feign-java11 -->
-		<dependency>
-			<groupId>io.github.openfeign</groupId>
-			<artifactId>feign-java11</artifactId>
-			<version>${feign.java11.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>io.github.openfeign</groupId>
-			<artifactId>feign-gson</artifactId>
-			<version>${feign.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>io.github.openfeign.form</groupId>
-			<artifactId>feign-form</artifactId>
-			<version>${feign.form.version}</version>
 		</dependency>
 <!--		 https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind-->
 		<dependency>

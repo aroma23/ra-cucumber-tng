@@ -4,10 +4,13 @@ import com.ra.CommonSteps;
 import com.ra.enums.Component;
 import com.ra.fw.RAAbstractTest;
 import com.ra.fw.Util;
+import com.ra.models.responses.sa.User;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.module.jsv.JsonSchemaValidator;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import org.junit.Assert;
 
 import java.io.File;
 import java.util.*;
@@ -55,6 +58,24 @@ public class SampleApplicationSteps extends RAAbstractTest {
     @Then("Get users api should respond user id {int}")
     public void getUsersApiShouldRespondUserId(int id) {
         response.then().assertThat().body("data.id", hasItems(id));
+
+        //TODO - get list of values
+        ArrayList<Integer> expectedIds = new ArrayList<>();
+        expectedIds.add(1);
+        expectedIds.add(2);
+        ArrayList<Integer> ids = response.then().extract().path("data.id");
+        logger.debug("list" + ids);
+        Assert.assertEquals(ids, expectedIds);
+
+        //TODO - get list of pojos
+        JsonPath jsonPath = response
+                .then()
+                .assertThat()
+                .extract().body().jsonPath();
+
+        List<User> users = jsonPath.getList("data", User.class);
+
+        logger.debug("users: " + users);
     }
 
     @When("Get user api called with userId: {string}")

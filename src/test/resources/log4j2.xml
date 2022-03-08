@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+<Appenders>
+    <Console name="Console" target="SYSTEM_OUT">
+<!--        <PatternLayout pattern="%d{YYYY-MM-dd HH:mm:ss} [%t] %-5p %c{1}:%4L - %msg%n" />-->
+        <PatternLayout disableAnsi="${sys:disable.ansi:-false}" pattern="%highlight{%d{YYYY-MM-dd HH:mm:ss} [%t] %-5p %c{1}:%4L - %msg%n}{FATAL=red blink, ERROR=red, WARN=yellow bold, INFO=black, DEBUG=cyan bold, TRACE=blue}" />
+    </Console>
+    <RollingFile name="RollingFile" filename="logs/tests.log"
+                 filepattern="logs/archive/tests-%d{YYYYMMddHHmmss}.log">
+        <PatternLayout pattern="%d{YYYY-MM-dd HH:mm:ss} [%t] %-5p %c{1}:%4L - %msg%n" />
+        <Policies>
+            <SizeBasedTriggeringPolicy size="100 MB" />
+        </Policies>
+        <DefaultRolloverStrategy max="20" />
+    </RollingFile>
+    <RollingFile name="FeignRollingFile" filename="logs/feign.log"
+                 filepattern="logs/archive/feign-%d{YYYYMMddHHmmss}.log">
+<!--        <PatternLayout pattern="%d{YYYY-MM-dd HH:mm:ss} [%t] %-5p %c{1}:%4L - %msg%n" />-->
+<!--        %replace{%msg}{&amp;password=.*}{&amp;password=****}-->
+        <PatternLayout pattern="%d{YYYY-MM-dd HH:mm:ss} [%t] %-5p %c{1}:%4L - %replace{%replace{%replace{%replace{%replace{%replace{%replace{%replace{%replace{%replace{%replace{%replace{%replace{%replace{%msg}{&amp;password=.*}{&amp;password=****}}{client_secret=.*&amp;grant_type=}{client_secret=***&amp;grant_type=}}{&quot;access_token&quot;:&quot;eyJ.*&quot;,&quot;token_type}{&quot;access_token&quot;:&quot;eyJ****&quot;,&quot;token_type}}{Bearer eyJ.*}{Bearer eyJ***}}{api_key=.*&amp;method}{api_key=***&amp;method}}{tokenId:.*}{tokenId: ****}}{&quot;password&quot;: &quot;.*&quot;}{&quot;password&quot;: &quot;****&quot;}}{&quot;result&quot;:.&quot;success&quot;:&quot;.*&quot;}{&quot;result&quot;:.&quot;success&quot;:&quot;****&quot;}}{&amp;refresh_token=.*&amp;}{&amp;refresh_token=****.*&amp;}}{&quot;access_token&quot;:&quot;.*&quot;,}{&quot;access_token&quot;:&quot;****&quot;,}}{&quot;id_token&quot;:&quot;.*&quot;}{&quot;id_token&quot;:&quot;****&quot;}}{&quot;refresh_token&quot;:&quot;.*&quot;,}{&quot;refresh_token&quot;:&quot;****&quot;,}}{&quot;token&quot;:&quot;.*&quot;,&quot;expire_time&quot;}{&quot;token&quot;:&quot;****&quot;,&quot;expire_time&quot;}}{Basic .*}{Basic ****}%n"/>
+        <Policies>
+            <SizeBasedTriggeringPolicy size="100 MB" />
+        </Policies>
+        <DefaultRolloverStrategy max="20" />
+    </RollingFile>
+</Appenders>
+<Loggers>
+    <Root level="${sys:root.log.level:-all}">
+        <AppenderRef ref="Console" />
+        <AppenderRef ref="RollingFile" />
+    </Root>
+    <Logger name="feign" level="debug" additivity="false">
+        <AppenderRef ref="FeignRollingFile" />
+    </Logger>
+<!--    <logger name="org.mongodb.driver" level="INFO"></logger>-->
+</Loggers>
+</Configuration>

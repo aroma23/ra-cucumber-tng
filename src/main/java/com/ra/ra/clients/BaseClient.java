@@ -10,7 +10,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public abstract class BaseClient {
-    protected static RequestSpecification spec;
+    protected static RequestSpecification requestSpecification;
 
     protected BaseClient() {
         Logger logger = LogManager.getLogger(this.getClass());
@@ -19,7 +19,7 @@ public abstract class BaseClient {
         LogConfig logConfig = restAssuredConfig.getLogConfig();
         logConfig.defaultStream(raLogger.getPrintStream()).enablePrettyPrinting(true);
 
-        spec = new RequestSpecBuilder()
+        requestSpecification = new RequestSpecBuilder()
                 .addFilter(ResponseLoggingFilter.logResponseTo(raLogger.getPrintStream()))
                 .addFilter(RequestLoggingFilter.logRequestTo(raLogger.getPrintStream()))
                 .setConfig(restAssuredConfig)

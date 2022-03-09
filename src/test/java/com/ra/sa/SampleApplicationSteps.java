@@ -95,18 +95,17 @@ public class SampleApplicationSteps extends RAAbstractTest {
         //https://docs.telerik.com/reporting/designing-reports/connecting-to-data/data-source-components/webservicedatasource-component/how-to-use-jsonpath-to-filter-json-data
         // $.store.book[?(@.price<10)]
         //$.data[?(@.id<10)]
-        //https://stackoverflow.com/questions/12585968/how-to-filter-by-string-in-jsonpath
-        //https://rows.com/docs/filtering-with-jsonpath
-        //@.data[*].email
-        //https://support.smartbear.com/alertsite/docs/monitors/api/endpoint/jsonpath.html
-        //https://docs.oracle.com/cd/E60058_01/PDF/8.0.8.x/8.0.8.0.0/PMF_HTML/JsonPath_Expressions.htm
-        //https://docs.hevodata.com/sources/sdk-&-streaming/rest-api/writing-jsonpath-expressions/
-        //https://github.com/json-path/JsonPath
-        //http://jsonpath.herokuapp.com/?path=$..book[?(@.author%20=~%20/.*REES/i)]
-        //$.data[?(@.email =~ /.*el.*/i)]
-        //$.data[?(@.first_name =~ /E.*/i)]
-        //$.data[?(!(@.first_name =~ /E.*/i))]
-        //https://www.youtube.com/watch?v=dLJBVCxnziM
+//        https://stackoverflow.com/questions/12585968/how-to-filter-by-string-in-jsonpath
+//        https://rows.com/docs/filtering-with-jsonpath
+//        @.data[*].email
+//        https://support.smartbear.com/alertsite/docs/monitors/api/endpoint/jsonpath.html
+//        https://docs.oracle.com/cd/E60058_01/PDF/8.0.8.x/8.0.8.0.0/PMF_HTML/JsonPath_Expressions.htm
+//        https://docs.hevodata.com/sources/sdk-&-streaming/rest-api/writing-jsonpath-expressions/
+//        http://jsonpath.herokuapp.com/?path=$..book[?(@.author%20=~%20/.*REES/i)]
+//        $.data[?(@.email =~ /.*el.*/i)]
+//        $.data[?(@.first_name =~ /E.*/i)]
+//        $.data[?(!(@.first_name =~ /E.*/i))]
+//        https://www.youtube.com/watch?v=dLJBVCxnziM
         //https://github.com/json-path/JsonPath
     }
 
@@ -164,5 +163,10 @@ public class SampleApplicationSteps extends RAAbstractTest {
         response.then()
 //                .log().all()
                 .statusCode(expectedStatusCode);
+    }
+
+    @Then("Extract first user's email from response")
+    public void extractFirstUserEmailFromResponse() {
+        logger.debug("First user's email id: " + response.then().extract().path("data[0].email"));
     }
 }

@@ -29,41 +29,36 @@ public class SAClient extends BaseClient{
     public Response getUsers(Map<String, String> queryMap) {
         return given()
                 .queryParams(queryMap)
-                .spec(spec)
-//                .log().all()
+                .spec(requestSpecification)
                 .get(baseUrl + "/api/users");
     }
 
     public Response getUser(String id) {
         return given()
-                .spec(spec)
-//                .log().all()
+                .spec(requestSpecification)
                 .get(baseUrl + "/api/users/{id}", id);
     }
 
     public Response createUser(String name, String job) {
         return given()
-                .spec(spec)
+                .spec(requestSpecification)
                 .contentType(ContentType.JSON)
                 .body(User.preFill(name, job))
-//                .log().all()
                 .post(baseUrl + "/api/users").andReturn();
     }
 
     public Response updateUser(String id, String name, String job) {
         return given()
-                .spec(spec)
+                .spec(requestSpecification)
                 .contentType(ContentType.JSON)
                 .body(User.preFill(name, job))
-//                .log().all()
                 .put(baseUrl + "/api/users/{id}", id).andReturn();
     }
 
     public Response deleteUser(String id) {
         return given()
-                .spec(spec)
+                .spec(requestSpecification)
                 .contentType(ContentType.JSON)
-//                .log().all()
                 .delete(baseUrl + "/api/users/{id}", id).andReturn();
     }
 }

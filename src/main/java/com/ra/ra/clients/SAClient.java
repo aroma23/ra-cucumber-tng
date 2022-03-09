@@ -10,7 +10,7 @@ import java.util.Properties;
 import static io.restassured.RestAssured.given;
 
 //Sample Application from reqres.in
-public class SAClient {
+public class SAClient extends BaseClient{
     private String accessToken;
     private Properties properties;
     private String baseUrl;
@@ -29,18 +29,21 @@ public class SAClient {
     public Response getUsers(Map<String, String> queryMap) {
         return given()
                 .queryParams(queryMap)
+                .spec(spec)
 //                .log().all()
                 .get(baseUrl + "/api/users");
     }
 
     public Response getUser(String id) {
         return given()
+                .spec(spec)
 //                .log().all()
                 .get(baseUrl + "/api/users/{id}", id);
     }
 
     public Response createUser(String name, String job) {
         return given()
+                .spec(spec)
                 .contentType(ContentType.JSON)
                 .body(User.preFill(name, job))
 //                .log().all()
@@ -49,6 +52,7 @@ public class SAClient {
 
     public Response updateUser(String id, String name, String job) {
         return given()
+                .spec(spec)
                 .contentType(ContentType.JSON)
                 .body(User.preFill(name, job))
 //                .log().all()
@@ -57,6 +61,7 @@ public class SAClient {
 
     public Response deleteUser(String id) {
         return given()
+                .spec(spec)
                 .contentType(ContentType.JSON)
 //                .log().all()
                 .delete(baseUrl + "/api/users/{id}", id).andReturn();

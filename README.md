@@ -29,7 +29,7 @@ mvn clean test -Dcucumber.filter.tags=@SampleApplication -Dsa.user=<<user>> -Dsa
 ```commandline
 Where to see reports: target/cucumber-reports/cucumber-html-reports/overview-features.html
 Where to see test logs: logs/tests.log
-Where to see feign logs: logs/feign.log
+Where to see feign logs: logs/ra.log
 ```
 
 ####Author

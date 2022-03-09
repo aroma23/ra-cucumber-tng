@@ -29,7 +29,7 @@ mvn clean test -Dcucumber.filter.tags=@SampleApplication -Dsa.user=<<user>> -Dsa
 ```commandline
 Where to see reports: target/cucumber-reports/cucumber-html-reports/overview-features.html
 Where to see test logs: logs/tests.log
-Where to see feign logs: logs/ra.log
+Where to see restassured logs: logs/ra.log
 ```
 
 ####Author
@@ -48,6 +48,7 @@ linkedin: https://www.linkedin.com/in/muthukumar-ramaiyah-785673a0/
 
 [comment]: <> (Matchers)
 [comment]: <> (http://hamcrest.org/JavaHamcrest/javadoc/2.2/)
+[comment]: <> (https://stackoverflow.com/questions/51130241/test-if-an-array-contains-an-element-from-another-array-with-hamcrest)
 
 [comment]: <> (JsonPath Specifics)
 [comment]: <> (https://support.smartbear.com/alertsite/docs/monitors/api/endpoint/jsonpath.html)

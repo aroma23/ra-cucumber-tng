@@ -9,8 +9,11 @@ Feature: DeviceInventory testing
     Then 'Get users' api should respond with expectedStatusCode: <expectedStatusCode>
     * Get users api response should match the schema
     * Get users api should respond with total pages more than 1
+    * Get users api should respond with 10 users
     * Extract first user's email from response
     * Get users api should respond user id 1
+    And Get users api should respond user ids '1,2,3,4,5,6,7,10'
+    And Get users api should respond user ids in order '1,2,3,4,5,6,7,10'
 
     Examples:
       | pageNo | pageSize | expectedStatusCode |

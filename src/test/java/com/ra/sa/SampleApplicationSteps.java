@@ -5,20 +5,17 @@ import com.ra.enums.Component;
 import com.ra.fw.RAAbstractTest;
 import com.ra.fw.Util;
 import com.ra.models.responses.sa.User;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import org.junit.Assert;
 
 import java.io.File;
 import java.util.*;
 
-import static io.restassured.RestAssured.*;
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.hasItems;
-import static org.hamcrest.Matchers.greaterThanOrEqualTo;
+import static org.hamcrest.Matchers.*;
 
 public class SampleApplicationSteps extends RAAbstractTest {
     private final CommonSteps commonSteps;
@@ -168,5 +165,27 @@ public class SampleApplicationSteps extends RAAbstractTest {
     @Then("Extract first user's email from response")
     public void extractFirstUserEmailFromResponse() {
         logger.debug("First user's email id: " + response.then().extract().path("data[0].email"));
+    }
+
+    @And("Get users api should respond user ids {string}")
+    public void getUsersApiShouldRespondUserIds(String idsString) {
+        List<Integer> ids = Arrays.asList(1,2,3,4,5,6,7,8,9,10);
+//        response.then().assertThat().body("data.id", hasItems(isIn(ids)));
+        response.then().assertThat().body("data.id", hasItems(is(in(ids))));
+    }
+
+    @And("Get users api should respond with {int} users")
+    public void getUsersApiShouldRespondWithUsers(int size) {
+        response.then().assertThat().body("data.id", hasSize(10));
+    }
+
+    @And("Get users api should respond user ids in order {string}")
+    public void getUsersApiShouldRespondUserIdsInOrder(String idsString) {
+        List<Integer> ids = Arrays.asList(1,2,3,4,5,6,7,8,9,10);
+//        response.then().assertThat().body("data.id", contains(1,2,3,4,5,6,7,8,9,10));
+//        response.then().assertThat().body("data.id", containsInAnyOrder(10,2,3,4,5,6,7,8,9,1));
+//        response.then().assertThat().body("data.id", is(ids));
+        response.then().assertThat().body("data.id", contains(ids.toArray()));
+//        response.then().assertThat().body("data.id", containsInAnyOrder(ids.toArray()));
     }
 }

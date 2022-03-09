@@ -303,8 +303,6 @@
 									<exclude>**/*.feature</exclude>
 									<exclude>**/TC.xml</exclude>
 									<exclude>**/*.txt</exclude>
-									<exclude>**/ARM*.xml</exclude>
-									<exclude>**/Insert*.xml</exclude>
 									<exclude>**/application.properties</exclude>
 									</excludes>
 								</resource>
@@ -340,13 +338,6 @@
 			<id>local</id>
 			<properties>
 				<test.env>local</test.env>
-				<threadCount>1</threadCount>
-			</properties>
-		</profile>
-		<profile>
-			<id>omlocal</id>
-			<properties>
-				<test.env>omlocal</test.env>
 				<threadCount>1</threadCount>
 			</properties>
 		</profile>

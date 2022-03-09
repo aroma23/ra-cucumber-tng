@@ -4,6 +4,6 @@ target
 *.prefs
 .project
 .classpath
-#/logs
+/logs
 .DS_Store
-#/results
+/results

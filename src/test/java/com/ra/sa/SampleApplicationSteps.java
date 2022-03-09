@@ -60,12 +60,12 @@ public class SampleApplicationSteps extends RAAbstractTest {
         response.then().assertThat().body("data.id", hasItems(id));
 
         //TODO - get list of values
-        ArrayList<Integer> expectedIds = new ArrayList<>();
-        expectedIds.add(1);
-        expectedIds.add(2);
-        ArrayList<Integer> ids = response.then().extract().path("data.id");
-        logger.debug("list" + ids);
-        Assert.assertEquals(ids, expectedIds);
+//        ArrayList<Integer> expectedIds = new ArrayList<>();
+//        expectedIds.add(11);
+//        expectedIds.add(12);
+//        ArrayList<Integer> ids = response.then().extract().path("data.id");
+//        logger.debug("list" + ids);
+//        Assert.assertEquals(ids, expectedIds);
 
         //TODO - get list of pojos
         JsonPath jsonPath = response
@@ -73,9 +73,40 @@ public class SampleApplicationSteps extends RAAbstractTest {
                 .assertThat()
                 .extract().body().jsonPath();
 
-        List<User> users = jsonPath.getList("data", User.class);
+        //TODO - fetch all users and convert them into user pojo
+        //List<User> users = jsonPath.getList("data", User.class);
+
+        //TODO - fetch only users whos id is great than 1 and convert them into user pojo
+        //List<User> users = jsonPath.getList("data.findAll { a -> a.id > 1}", User.class);
+
+        //TODO - fetch only users whos firstname is 'George' and convert them into user pojo
+        //List<User> users = jsonPath.getList("data.findAll { a -> a.first_name == 'George'}", User.class);
+
+        //TODO - fetch only users whos firstname starts with E and convert them into user pojo
+        //List<User> users = jsonPath.getList("data.findAll { a -> a.first_name =~  /E.*/}", User.class);
+
+        //TODO - fetch only users whos firstname not starts with E and convert them into user pojo
+        List<User> users = jsonPath.getList("data.findAll { a -> !(a.first_name =~  /E.*/)}", User.class);
 
         logger.debug("users: " + users);
+
+        //$.data[?(@.first_name == "Michael")]
+        //https://www.jsonquerytool.com/
+        //https://docs.telerik.com/reporting/designing-reports/connecting-to-data/data-source-components/webservicedatasource-component/how-to-use-jsonpath-to-filter-json-data
+        // $.store.book[?(@.price<10)]
+        //$.data[?(@.id<10)]
+        //https://stackoverflow.com/questions/12585968/how-to-filter-by-string-in-jsonpath
+        //https://rows.com/docs/filtering-with-jsonpath
+        //@.data[*].email
+        //https://support.smartbear.com/alertsite/docs/monitors/api/endpoint/jsonpath.html
+        //https://docs.oracle.com/cd/E60058_01/PDF/8.0.8.x/8.0.8.0.0/PMF_HTML/JsonPath_Expressions.htm
+        //https://docs.hevodata.com/sources/sdk-&-streaming/rest-api/writing-jsonpath-expressions/
+        //https://github.com/json-path/JsonPath
+        //http://jsonpath.herokuapp.com/?path=$..book[?(@.author%20=~%20/.*REES/i)]
+        //$.data[?(@.email =~ /.*el.*/i)]
+        //$.data[?(@.first_name =~ /E.*/i)]
+        //$.data[?(!(@.first_name =~ /E.*/i))]
+        //https://www.youtube.com/watch?v=dLJBVCxnziM
     }
 
     @When("Get user api called with userId: {string}")

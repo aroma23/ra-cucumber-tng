@@ -13,7 +13,7 @@ Feature: DeviceInventory testing
 
     Examples:
       | pageNo | pageSize | expectedStatusCode |
-      | 0      | 2        | 200                |
+      | 0      | 10        | 200                |
 
   @GetUser
   Scenario Outline: Validate SA get user api

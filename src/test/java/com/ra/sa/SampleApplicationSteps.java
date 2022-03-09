@@ -107,6 +107,7 @@ public class SampleApplicationSteps extends RAAbstractTest {
         //$.data[?(@.first_name =~ /E.*/i)]
         //$.data[?(!(@.first_name =~ /E.*/i))]
         //https://www.youtube.com/watch?v=dLJBVCxnziM
+        //https://github.com/json-path/JsonPath
     }
 
     @When("Get user api called with userId: {string}")

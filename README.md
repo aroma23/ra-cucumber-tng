@@ -41,6 +41,8 @@ linkedin: https://www.linkedin.com/in/muthukumar-ramaiyah-785673a0/
 [comment]: <> (RestAssured specific)
 <!--https://techbeacon.com/app-dev-testing/how-perform-api-testing-rest-assured?amp-->
 [comment]: <> (https://github.com/rest-assured/rest-assured/wiki/Usage)
+[comment]: <> (https://www.guru99.com/rest-assured.html)
+[comment]: <> (https://testautomationu.applitools.com/automating-your-api-tests-with-rest-assured/)
 
 [comment]: <> (Sample Applications)
 [comment]: <> (http://ergast.com/mrd/)
@@ -49,6 +51,8 @@ linkedin: https://www.linkedin.com/in/muthukumar-ramaiyah-785673a0/
 [comment]: <> (Matchers)
 [comment]: <> (http://hamcrest.org/JavaHamcrest/javadoc/2.2/)
 [comment]: <> (https://stackoverflow.com/questions/51130241/test-if-an-array-contains-an-element-from-another-array-with-hamcrest)
+[comment]: <> (https://www.journaldev.com/21501/rest-assured-tutorial)
+[comment]: <> (https://www.baeldung.com/rest-assured-response)
 
 [comment]: <> (JsonPath Specifics)
 [comment]: <> (https://support.smartbear.com/alertsite/docs/monitors/api/endpoint/jsonpath.html)

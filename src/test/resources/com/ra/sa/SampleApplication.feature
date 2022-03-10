@@ -7,6 +7,7 @@ Feature: DeviceInventory testing
   Description: Validate SA get users api
     When Get users api called with page: '<pageNo>' and size: '<pageSize>'
     Then 'Get users' api should respond with expectedStatusCode: <expectedStatusCode>
+    * Get users api response should not be empty
     * Get users api response should match the schema
     * Get users api should respond with total pages more than 1
     * Get users api should respond with 10 users

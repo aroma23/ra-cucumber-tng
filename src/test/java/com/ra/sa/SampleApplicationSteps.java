@@ -56,6 +56,10 @@ public class SampleApplicationSteps extends RAAbstractTest {
     public void getUsersApiShouldRespondUserId(int id) {
         response.then().assertThat().body("data.id", hasItems(id));
 
+        //TODO -  We can extract with out passing the reference
+        //List<User> usersFromResponse =  response.then().extract().path("data");
+        //logger.debug("usersFromResponse: " + usersFromResponse);
+
         //TODO - get list of values
 //        ArrayList<Integer> expectedIds = new ArrayList<>();
 //        expectedIds.add(11);
@@ -187,5 +191,10 @@ public class SampleApplicationSteps extends RAAbstractTest {
 //        response.then().assertThat().body("data.id", is(ids));
         response.then().assertThat().body("data.id", contains(ids.toArray()));
 //        response.then().assertThat().body("data.id", containsInAnyOrder(ids.toArray()));
+    }
+
+    @And("Get users api response should not be empty")
+    public void getUsersApiResponseShouldNotBeEmpty() {
+        response.then().body("$", is(not(empty())));
     }
 }

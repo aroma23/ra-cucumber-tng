@@ -1,9 +1,10 @@
 package com.ra.ra.clients;
 
-import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
+
 import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.Logger;
@@ -71,20 +72,18 @@ public class RACustomLogger {
         if (myPrintStream == null) {
             OutputStream output = new OutputStream() {
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
-
                 @Override
-                public void write(int b) throws IOException {
+                public void write(int b) {
                     baos.write(b);
                 }
                 /**
                  * @see java.io.OutputStream#flush()
                  */
                 @Override
-                public void flush() {
-                    String log =
-                            this
-                                    .baos.toString().trim();
-
+                public void flush() throws UnsupportedEncodingException {
+//                    String log = this.baos.toString().trim();
+//                    System.out.println(Charset.defaultCharset().toString());
+                    String log = this.baos.toString("UTF-8").trim();
                     if (!StringUtils.isBlank(log)) {
                         myLog.info(log);
                         baos = new ByteArrayOutputStream();
@@ -97,7 +96,6 @@ public class RACustomLogger {
         }
         return myPrintStream;
     }
-
     /**
      * Constructor
      *
